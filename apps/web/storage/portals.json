@@ -1,0 +1,63 @@
+[
+  {
+    "id": "468d2b31-182f-423a-afc2-7ed35dcae83b",
+    "name": "New",
+    "slug": "new",
+    "description": "",
+    "folderId": "1JfeHH7KqkPj_m2Jq3QaoOIKe4sgLrrys",
+    "folderLink": "https://drive.google.com/drive/folders/1JfeHH7KqkPj_m2Jq3QaoOIKe4sgLrrys",
+    "allowUploads": true,
+    "uploadCount": 1,
+    "createdAt": "2026-05-21T04:24:42.501Z"
+  },
+  {
+    "id": "d4e86abb-bee4-4c40-b958-fc84530efcf4",
+    "name": "Supplier Uploads",
+    "slug": "supplier-uploads",
+    "description": "",
+    "folderId": "1sZNttQjCtS_Op-hOJ1ATaPxUGpEojrRl",
+    "folderLink": "https://drive.google.com/drive/folders/1sZNttQjCtS_Op-hOJ1ATaPxUGpEojrRl",
+    "allowUploads": true,
+    "uploadCount": 1,
+    "createdAt": "2026-05-21T04:38:38.321Z"
+  },
+  {
+    "id": "dc885116-7d56-480c-bcbe-a4ac049585d5",
+    "name": "General Upload Portal",
+    "slug": "general-upload-portal",
+    "description": "Simple public upload workflow",
+    "folderId": "1BkStV66R1f4hhIp2AUanux9lZDfwMDq2",
+    "folderLink": "https://drive.google.com/drive/folders/1BkStV66R1f4hhIp2AUanux9lZDfwMDq2",
+    "allowUploads": true,
+    "uploadCount": 0,
+    "createdAt": "2026-05-21T04:55:35.043Z"
+  },
+  {
+    "id": "0d7291df-1c32-4e5f-9e41-0c588bbd72a2",
+    "name": "Supplier Onboarding",
+    "slug": "supplier-onboarding",
+    "description": "Collect supplier onboarding documents",
+    "template": "Supplier Onboarding",
+    "folderId": "1qD2nrvAVcKKWnCUC-Zb7bKrw5E_Ck81J",
+    "folderLink": "https://drive.google.com/drive/folders/1qD2nrvAVcKKWnCUC-Zb7bKrw5E_Ck81J",
+    "allowUploads": true,
+    "uploadCount": 1,
+    "password": "",
+    "expiryDate": "",
+    "createdAt": "2026-05-21T05:02:13.069Z"
+  },
+  {
+    "id": "cd7ba653-2a87-4573-8bc5-1cd4bda5914a",
+    "name": "Compliance Submission",
+    "slug": "compliance-submission",
+    "description": "Collect governance and compliance docs",
+    "template": "Compliance Submission",
+    "folderId": "1pnBDWEqS9DF4ya7AHjSMsKXWwme3VOba",
+    "folderLink": "https://drive.google.com/drive/folders/1pnBDWEqS9DF4ya7AHjSMsKXWwme3VOba",
+    "allowUploads": true,
+    "uploadCount": 0,
+    "password": "",
+    "expiryDate": "",
+    "createdAt": "2026-05-21T05:26:38.610Z"
+  }
+]
