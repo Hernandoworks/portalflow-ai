@@ -1,0 +1,12 @@
+{
+  "actions": [
+    {
+      "name": "github.repo.inspect",
+      "risk": "LOW"
+    },
+    {
+      "name": "notion.page.create",
+      "risk": "MEDIUM"
+    }
+  ]
+}
