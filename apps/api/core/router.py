@@ -1,10 +1,33 @@
-def route_action(request):
-    connector = request.get('connector')
-    action = request.get('action')
+from core.registry import get_connector
 
-    # Connector registry placeholder
-    return {
-        'connector': connector,
-        'action': action,
-        'message': 'Connector execution placeholder'
-    }
+
+class ConnectorRouter:
+
+
+    async def execute(
+        self,
+        connector,
+        action,
+        payload
+    ):
+
+        instance = get_connector(
+            connector
+        )
+
+
+        if not instance:
+
+            return {
+                "error":
+                "Connector missing"
+            }
+
+
+        return await instance.run(
+            action,
+            payload
+        )
+
+
+router=ConnectorRouter()

@@ -1,13 +1,40 @@
 openapi: 3.1.0
 info:
-  title: AI Connector Hub API
+  title: PortalFlow AI Action Gateway
   version: 0.1.0
+servers:
+- url: https://YOUR_DEPLOYED_API_URL
 paths:
+  /commands:
+    get:
+      operationId: listCommands
+      description: List available PortalFlow actions
+      responses:
+        '200':
+          description: Available commands
   /execute:
     post:
       operationId: executeAction
-      summary: Execute connector action
-  /search:
-    post:
-      operationId: searchWorkspace
-      summary: Search connected systems
+      description: Execute PortalFlow connector action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  type: string
+                  enum:
+                  - notion
+                  - github
+                action:
+                  type: string
+                payload:
+                  type: object
+              required:
+              - connector
+              - action
+      responses:
+        '200':
+          description: Execution result

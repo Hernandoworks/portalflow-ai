@@ -1,0 +1,19 @@
+{
+  "name": "portalflow-ai",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.106.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.5",
+    "googleapis": "^171.4.0",
+    "next-auth": "^4.24.14",
+    "qrcode": "^1.5.4",
+    "react-dropzone": "^15.0.0",
+    "uuid": "^14.0.0"
+  }
+}

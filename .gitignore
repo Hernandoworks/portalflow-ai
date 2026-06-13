@@ -1,6 +1,17 @@
-node_modules
-.next
+# Python
+venv/
+.venv/
+apps/api/venv/
+apps/api/.venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+.next/
+
+# Environment
 .env
-dist
-coverage
+
+# Mac
 .DS_Store
