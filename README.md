@@ -1,54 +1,42 @@
-# PortalFlow AI Connector Hub
+# PortalFlow AI
 
 AI execution layer connecting AI assistants with real applications.
 
-## Core Separation
+## Products
 
-## Notion = Brain
-Stores:
-- Product knowledge
-- Strategy
-- Decisions
-- Documentation
-- Agent prompts
-- Roadmap
+This monorepo contains two distinct products:
 
-## GitHub = Engine
-Stores:
-- Source code
-- Connectors
-- API schemas
-- Automation scripts
-- Tests
+### 1. Connector Hub (`connector-hub/`)
+**Python FastAPI backend** — Action Gateway connecting ChatGPT with:
+- **Notion** — 18 actions (search, page CRUD, memory/vault/knowledge/changelog)
+- **Google Drive** — 14 actions (files, Sheets, Docs, Apps Script)
+- **GitHub** — issue tracking
+- **Audit** — all actions logged to Notion Change Log DB
+
+**Deployment**: `https://connector-hub-production-3bc7.up.railway.app`
+
+**Start**: `cd connector-hub && source venv/bin/activate && uvicorn main:app --reload`
+
+### 2. Upload Portal (`upload-portal/`)
+**Next.js web app** — Create secure file upload portals that push files directly into Google Drive.
+
+**Start**: `cd upload-portal && pnpm dev`
 
 ## Architecture
 
-AI Clients:
-- ChatGPT Custom GPT
-- Claude
-- Gemini
+```
+AI Clients                    PortalFlow                    Connected Apps
+(ChatGPT GPT Actions)   →    Connector Hub API    →        Notion
+(Claude, Gemini)              Action Gateway               Google Drive
+                              Permission Engine             GitHub
+                              Audit Logger
+```
 
-↓
+## Schema
 
-PortalFlow Runtime:
-- Action Gateway
-- Connector Router
-- Agent Runtime
-- Permission Engine
-- Audit Logger
+`schemas/openapi.yaml` — Import into ChatGPT as a Custom GPT Action.
 
-↓
+## Philosophy
 
-Connected Apps:
-- Notion
-- GitHub
-- Google Drive
-- Business APIs
-
-## MVP Priority
-
-1. ChatGPT Custom GPT Actions
-2. Action Gateway API
-3. Notion Connector
-4. GitHub Connector
-5. Audit System
+Notion = Brain (knowledge, strategy, memory)
+GitHub = Engine (code, connectors, automation)

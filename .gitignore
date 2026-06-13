@@ -1,17 +1,29 @@
 # Python
 venv/
 .venv/
-apps/api/venv/
-apps/api/.venv/
 __pycache__/
 *.pyc
 
 # Node
 node_modules/
 .next/
+yarn.lock
+package-lock.json
 
 # Environment
 .env
 
-# Mac
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+
+# Build artifacts
+*.zip
+
+# Railway local env
+.env.railway

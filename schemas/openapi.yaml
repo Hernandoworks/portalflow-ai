@@ -1,21 +1,45 @@
 openapi: 3.1.0
 info:
   title: PortalFlow AI Action Gateway
-  version: 0.1.0
+  description: >
+    AI execution layer connecting ChatGPT with Notion workspace and Google
+    Workspace (Drive, Sheets, Docs, Apps Script). Actions: Notion search,
+    page CRUD, memory management, chat logging, asset/library management,
+    knowledge graph, audit changelog, vault, drive file management,
+    spreadsheet operations, document editing, and Apps Script execution.
+  version: 1.0.0
 servers:
-- url: https://YOUR_DEPLOYED_API_URL
+  - url: https://connector-hub-production-3bc7.up.railway.app
 paths:
   /commands:
     get:
       operationId: listCommands
-      description: List available PortalFlow actions
+      summary: List all available PortalFlow connector actions
+      description: Returns a full registry of connectors and their available actions with risk levels
       responses:
         '200':
-          description: Available commands
+          description: Registry of all available connector actions
   /execute:
     post:
       operationId: executeAction
-      description: Execute PortalFlow connector action
+      summary: Execute a PortalFlow connector action
+      description: >
+        Universal action executor. Use connector="drive" with these actions:
+
+        **Drive Files:** file.list (list files in folder), file.upload (create
+        file with content), file.download (get file content by ID), file.search
+        (search by name/mime), file.delete.
+
+        **Sheets:** sheet.create (new spreadsheet with optional headers/rows),
+        sheet.read (get values from a range), sheet.append (append a row),
+        sheet.update (update a cell or range).
+
+        **Docs:** doc.create (new document with optional body), doc.read (get
+        document body text), doc.append (append text to end of document).
+
+        **Apps Script:** script.create (new script project with code),
+        script.run (execute a script function by ID).
+      x-openai-isConsequential: false
       requestBody:
         required: true
         content:
@@ -25,16 +49,84 @@ paths:
               properties:
                 connector:
                   type: string
+                  description: Connector to execute action on
                   enum:
-                  - notion
-                  - github
+                    - notion
+                    - github
+                    - drive
                 action:
                   type: string
+                  description: >
+                    Drive actions: file.list, file.upload, file.download,
+                    file.search, file.delete, sheet.create, sheet.read,
+                    sheet.append, sheet.update, doc.create, doc.read,
+                    doc.append, script.create, script.run.
+                    Notion actions: search.all, page.create, page.retrieve,
+                    page.update, database.query, block.append, memory.save,
+                    memory.search, chat.log, chat.get_history, vault.save,
+                    vault.search, knowledge.save, knowledge.search,
+                    asset.save, asset.search, changelog.append, changelog.query.
                 payload:
                   type: object
+                  description: >
+                    Parameters depend on the action:
+
+                    **Drive file.list / file.search:** folder_id, query,
+                    mime_type, page_size.
+
+                    **Drive file.upload:** name, content, mime_type, folder_id.
+
+                    **Drive file.download / file.delete:** file_id.
+
+                    **Sheet.create:** title, headers (array), rows (array of
+                    arrays).
+
+                    **Sheet.read / sheet.update:** spreadsheet_id, range (e.g.
+                    "Sheet1!A1:Z100"), values.
+
+                    **Sheet.append:** spreadsheet_id, values (array), range.
+
+                    **Doc.create:** title, body (text content).
+
+                    **Doc.read / doc.append:** document_id, text.
+
+                    **Script.create:** title, code (JavaScript source), file_name.
+
+                    **Script.run:** script_id, function (function name),
+                    parameters (array).
               required:
-              - connector
-              - action
+                - connector
+                - action
       responses:
         '200':
-          description: Execution result
+          description: Action execution result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    example: PortalFlow
+                  status:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    description: Result data from the connector action
+        '403':
+          description: Action blocked by permission check
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Health check endpoint
+      responses:
+        '200':
+          description: Service is healthy
+  /system/generate-openapi:
+    post:
+      operationId: generateOpenAPISchema
+      summary: Auto-generate the OpenAPI schema from the connector registry
+      responses:
+        '200':
+          description: Schema generated

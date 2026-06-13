@@ -1,7 +1,6 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+  - "upload-portal"
 allowBuilds:
   msw: true
-  sharp: false
+  sharp: true
   unrs-resolver: true

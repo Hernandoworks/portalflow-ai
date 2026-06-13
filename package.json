@@ -1,13 +1,13 @@
 {
   "name": "portalflow-ai",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm dev",
-    "dev:web": "pnpm --filter web dev",
-    "dev:api": "cd apps/api && source .venv/bin/activate && uvicorn main:app --reload",
-    "install:all": "pnpm install"
+    "dev:web": "pnpm --filter upload-portal dev",
+    "dev:api": "cd connector-hub && source venv/bin/activate && uvicorn main:app --reload --port 8000",
+    "web": "pnpm --filter upload-portal",
+    "api": "cd connector-hub && source venv/bin/activate"
   },
   "dependencies": {},
   "devDependencies": {}
